@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
+
+import { StoreContext } from '../../index';
 
 const StyledFooter = styled.div`
   position: absolute;
@@ -17,16 +20,25 @@ const StyledFooter = styled.div`
     font-size: 26px;
     font-weight: 500;
     color: #ff2d2d;
+    cursor: pointer;
   }
 `;
 
-const Footer = () => {
+const Footer = observer(() => {
+  const { store } = useContext(StoreContext);
+
+  const removeEventsHandler = () => {
+    store.removeSelectedEvents();
+  };
+
   return (
     <StyledFooter>
       <p>Today</p>
-      <p>Delete</p>
+      <p onClick={removeEventsHandler}>
+        {store.selectedEvents.length ? 'Delete' : ''}
+      </p>
     </StyledFooter>
   );
-};
+});
 
 export default Footer;

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import { createGlobalStyle } from 'styled-components';
 
-import App from './Components/App/App.js';
+import App from './Components/App';
+import CalendarStore from './store';
 
 const Global = createGlobalStyle`
   * {
@@ -31,11 +32,15 @@ const Global = createGlobalStyle`
   }
 `;
 
+export const StoreContext = createContext(null);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <>
+  <StoreContext.Provider value={{
+    store: new CalendarStore()
+  }}>
     <Global />
     <App />
-  </>
+  </StoreContext.Provider>
 );

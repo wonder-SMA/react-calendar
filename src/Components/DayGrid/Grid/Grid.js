@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
 
 import { getGrid } from '../../utils/functions';
+import Cell from './Cell';
+import { StoreContext } from '../../../index';
 
 const StyledGrid = styled.ul`
   display: flex;
@@ -15,33 +18,26 @@ const StyledGrid = styled.ul`
     & > ul {
       display: flex;
       flex-wrap: nowrap;
-
-      li {
-        width: 92px;
-        height: 66px;
-
-        &:not(&:first-child) {
-          border-left: 2px solid #e7e7e7;
-        }
-      }
     }
   }
 `;
 
-const Grid = () => {
+const Grid = observer(() => {
+  const { store } = useContext(StoreContext);
+
   return (
     <StyledGrid>
       {getGrid().map((week, index) =>
         <li key={index}>
           <ul>
-            {week.map((day) =>
-              <li key={day}></li>
+            {week.map((cellTimestamp, index) =>
+              <Cell key={index} cellTimestamp={cellTimestamp} events={store.events} />
             )}
           </ul>
         </li>
       )}
     </StyledGrid>
   );
-};
+});
 
 export default Grid;

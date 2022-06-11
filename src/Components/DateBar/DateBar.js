@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
 
 import WeekDay from './WeekDay';
 import MonthPicker from './MonthPicker';
-import { currentDate, getCurrentMonth, getCurrentWeek, getCurrentYear } from '../utils/functions';
+import { currentDate, getMonth, getYear } from '../utils/functions';
 import { months, weekDays } from '../utils/consts';
+import { StoreContext } from '../../index';
 
 const StyledDateBar = styled.div`
   width: 100%;
@@ -32,10 +34,10 @@ const StyledDateBar = styled.div`
   }
 `;
 
-const DateBar = () => {
-  const [currentWeek, setCurrentWeek] = useState(getCurrentWeek());
-  const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
-  const [currentYear, setCurrentYear] = useState(getCurrentYear());
+const DateBar = observer(() => {
+  const { store } = useContext(StoreContext);
+  const [currentMonth, setCurrentMonth] = useState(getMonth());
+  const [currentYear, setCurrentYear] = useState(getYear());
 
   useEffect(() => {
   }, []);
@@ -45,13 +47,18 @@ const DateBar = () => {
       <div>
         <ul>
           {weekDays.map((day, index) =>
-            <WeekDay key={index} day={day} date={currentWeek[day]} isCurrent={currentWeek[day] === currentDate[2]} />
+            <WeekDay
+              key={index}
+              day={day}
+              date={store.week[index][day]}
+              isCurrent={store.week[index][day] === +currentDate[2]}
+            />
           )}
         </ul>
-        <MonthPicker month={months[currentMonth]} year={currentYear} />
+        <MonthPicker month={months[currentMonth][1]} year={currentYear} />
       </div>
     </StyledDateBar>
   );
-};
+});
 
 export default DateBar;

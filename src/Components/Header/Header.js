@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+
+import { StoreContext } from '../../index';
 
 const StyledHeader = styled.div`
   width: 100%;
@@ -15,15 +17,18 @@ const StyledHeader = styled.div`
 
   div:last-child {
     position: relative;
-    width: 30px;
-    height: 30px;
+    right: -10px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
   }
 
   span:before,
   span:after {
     position: absolute;
-    top: 13px;
-    width: 100%;
+    top: 23px;
+    right: 10px;
+    width: 30px;
     height: 4px;
     background-color: #ff2d2d;
     content: '';
@@ -35,12 +40,21 @@ const StyledHeader = styled.div`
 `;
 
 const Header = () => {
+  const { store } = useContext(StoreContext);
+
+  const addEventHandler = () => {
+    const event = prompt('Enter event time: YYYY-MM-DD hh:mm:ss')?.split(' ');
+    if (event.length === 2) {
+      store.setEvent(Date.parse(`${event[0]}T${event[1]}`));
+    }
+  };
+
   return (
     <StyledHeader>
       <div>
         <p>Interview Calendar</p>
       </div>
-      <div>
+      <div onClick={addEventHandler}>
         <span />
       </div>
     </StyledHeader>

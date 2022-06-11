@@ -1,43 +1,48 @@
-import { weekDays } from './consts';
+import { months, weekDays } from './consts';
+
+export const currentDate = `${new Date(Date.now())}`.split(' ');
+
+function getNormalNumber(number) {
+  return (number < 10 ? '0' + number : number);
+}
+
+export function getWeek() {
+  const week = [{ Mon: 0 }, { Tue: 0 }, { Wed: 0 }, { Thu: 0 }, { Fri: 0 }, { Sat: 0 }, { Sun: 0 }];
+  for (let i = 0; i < 7; i++) {
+    week[i][weekDays[i]] = currentDate[2] - weekDays.indexOf(currentDate[0]) + i;
+  }
+  return week;
+}
+
+export function getMonth() {
+  return currentDate[1];
+}
+
+export function getYear() {
+  return currentDate[3];
+}
 
 export function getHours() {
   const hours = [];
   for (let i = 1; i < 24; i++) {
-    hours.push(`${i < 10 ? '0' + i : i}:00`);
+    hours.push(`${getNormalNumber(i)}:00`);
   }
   return hours;
 }
 
-export function getGrid() {
+export function getGrid(week = getWeek(), month = getMonth(), year = getYear()) {
   const grid = [];
   for (let i = 0; i < 24; i++) {
-    const week = [];
+    const weekHours = [];
     for (let j = 0; j < 7; j++) {
-      week.push(`${i < 10 ? '0' + i : i}-${i < 10 ? '0' + (i + 1) : (i + 1)}:${weekDays[j]}`);
+      weekHours.push(Date.parse(
+        `${year}` + '-' +
+        `${months[month][0]}` + '-' +
+        `${getNormalNumber(week[j][weekDays[j]])}` + 'T' +
+        `${getNormalNumber(i)}:00:00`)
+      );
     }
-    grid.push(week);
+    grid.push(weekHours);
   }
   return grid;
-}
-
-export const currentDate = `${new Date(Date.now())}`.split(' ');
-
-export function getCurrentWeek() {
-  const currentWeek = { Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0, Sun: 0 };
-  for (let i = 0; i < 7; i++) {
-    if (weekDays[i] !== currentDate[0]) {
-      currentWeek[weekDays[i]] = currentDate[2] - weekDays.indexOf(currentDate[0]) + i;
-    } else {
-      currentWeek[weekDays[i]] = currentDate[2];
-    }
-  }
-  return currentWeek;
-}
-
-export function getCurrentMonth() {
-  return currentDate[1];
-}
-
-export function getCurrentYear() {
-  return currentDate[3];
 }

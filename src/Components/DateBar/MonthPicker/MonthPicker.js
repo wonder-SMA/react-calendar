@@ -12,6 +12,7 @@ const StyledMonthPicker = styled.div`
 
   svg {
     width: 92px;
+    cursor: pointer;
   }
 
   p {
