@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 const StyledWeekDay = styled.li`
-  width: 92px;
+  width: 100%;
   height: 72px;
   display: flex;
   flex-direction: column;

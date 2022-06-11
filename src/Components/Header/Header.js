@@ -46,6 +46,8 @@ const Header = () => {
     const event = prompt('Enter event time: YYYY-MM-DD hh:mm:ss')?.split(' ');
     if (event.length === 2) {
       store.setEvent(Date.parse(`${event[0]}T${event[1]}`));
+    } else {
+      alert('Wrong user input');
     }
   };
 

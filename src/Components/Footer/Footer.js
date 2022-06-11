@@ -28,6 +28,8 @@ const Footer = observer(() => {
   const { store } = useContext(StoreContext);
 
   const removeEventsHandler = () => {
+    const amount = store.selectedEvents.length;
+    setTimeout(() => alert(`The ${amount} events have been removed`), 500);
     store.removeSelectedEvents();
   };
 

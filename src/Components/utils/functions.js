@@ -1,9 +1,13 @@
 import { months, weekDays } from './consts';
 
-export const currentDate = `${new Date(Date.now())}`.split(' ');
+const currentDate = `${new Date(Date.now())}`.split(' ');
 
 function getNormalNumber(number) {
   return (number < 10 ? '0' + number : number);
+}
+
+export function getCurrentDay() {
+  return +currentDate[2];
 }
 
 export function getWeek() {
