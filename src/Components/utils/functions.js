@@ -46,6 +46,8 @@ export function getGrid(week, month, year) {
           `${getNormalNumber(week[j][weekDays[j]])}` + 'T' +
           `${getNormalNumber(i)}:00:00`)
         );
+      } else {
+        cells.push(null);
       }
     }
     grid.push(cells);

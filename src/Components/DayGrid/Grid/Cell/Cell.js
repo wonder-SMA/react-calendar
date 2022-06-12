@@ -6,7 +6,7 @@ import Event from './Event';
 import { StoreContext } from '../../../../index';
 
 const StyledCell = styled.li`
-  width: 92px;
+  width: 100%;
   height: 66px;
   padding: 2px;
 
@@ -21,14 +21,14 @@ const Cell = observer(({ cellTimestamp }) => {
   const [isSelected, setIsSelected] = useState(false);
 
   useEffect(() => {
-    if (store.events.length) {
+    if (cellTimestamp && store.events.length) {
       store.events.forEach(event => {
         if (cellTimestamp <= event && event < cellTimestamp + 3600000) {
           return setIsEvent(true);
         }
       });
     }
-    if (!store.events.includes(cellTimestamp)) {
+    if (cellTimestamp && !store.events.includes(cellTimestamp)) {
       setIsSelected(false);
       setIsEvent(false);
     }

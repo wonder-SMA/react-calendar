@@ -7,6 +7,7 @@ import Cell from './Cell';
 import { StoreContext } from '../../../index';
 
 const StyledGrid = styled.ul`
+  width: 644px;
   display: flex;
   flex-direction: column;
 

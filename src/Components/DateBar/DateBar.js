@@ -11,16 +11,13 @@ const StyledDateBar = styled.div`
   width: 100%;
   height: 146px;
   display: flex;
+  padding-left: 65px;
   border-top: 2px solid #ececec;
   border-bottom: 2px solid #ececec;
   background-color: #f6f6f6;
 
   @media (min-width: 644px) {
-    justify-content: flex-end;
-
-    ul {
-      justify-content: flex-end;
-    }
+    padding-left: 96px;
   }
 
   & > div {

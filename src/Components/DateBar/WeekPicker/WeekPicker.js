@@ -19,6 +19,7 @@ const StyledWeekPicker = styled.div`
   }
 
   p {
+    text-align: center;
     font-size: 24px;
   }
 `;

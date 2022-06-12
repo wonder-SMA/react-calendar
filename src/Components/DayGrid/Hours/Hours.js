@@ -8,6 +8,7 @@ const StyledHours = styled.ul`
   padding-top: 33px;
 
   li {
+    width: 65px;
     height: 66px;
     display: flex;
     justify-content: center;
@@ -16,6 +17,10 @@ const StyledHours = styled.ul`
     font-size: 26px;
     font-weight: 500;
     color: #cfcfcf;
+
+    @media (min-width: 644px) {
+      width: 96px;
+    }
   }
 `;
 
