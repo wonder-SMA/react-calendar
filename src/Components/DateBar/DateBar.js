@@ -1,10 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { observer } from 'mobx-react-lite';
 
 import WeekDay from './WeekDay';
 import WeekPicker from './WeekPicker';
-import { getCurrentDay } from '../utils/functions';
 import { months, weekDays } from '../utils/consts';
 import { StoreContext } from '../../index';
 
@@ -45,23 +44,22 @@ const StyledDateBar = styled.div`
 const DateBar = observer(() => {
   const { store } = useContext(StoreContext);
 
-  useEffect(() => {
-  }, []);
-
   return (
     <StyledDateBar>
       <div>
         <ul>
-          {weekDays.map((day, index) =>
+          {store.week.map((day, index) =>
             <WeekDay
               key={index}
-              day={day}
-              date={store.week[index][day]}
-              isCurrent={store.week[index][day] === getCurrentDay()}
+              day={weekDays[index]}
+              date={day[weekDays[index]]}
+              isCurrent={day[weekDays[index]] === new Date().getDate()
+                && store.month === months[new Date().getMonth()]
+                && store.year === new Date().getFullYear()}
             />
           )}
         </ul>
-        <WeekPicker month={months[store.month][1]} year={store.year} />
+        <WeekPicker />
       </div>
     </StyledDateBar>
   );

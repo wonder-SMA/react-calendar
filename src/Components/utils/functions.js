@@ -1,29 +1,29 @@
 import { months, weekDays } from './consts';
 
-const currentDate = `${new Date(Date.now())}`.split(' ');
+function checkDate(index, fullRefDate, daysInMonth) {
+  let dayIndex = fullRefDate.getDay();
+  const refDayIndex = dayIndex ? dayIndex - 1 : dayIndex + 6;
+  const refDate = fullRefDate.getDate();
+  const date = refDate - refDayIndex + index;
+  if ((date < 0)
+    || (date > daysInMonth)
+    || (date > refDate && index < refDayIndex)
+    || (date < refDate && index > refDayIndex)) {
+    return 0;
+  }
+  return date;
+}
+
+export function getWeek(fullRefDate = new Date(), daysInMonth) {
+  return weekDays.reduce((prev, value, index) => {
+    return [...prev, {
+      [value]: checkDate(index, fullRefDate, daysInMonth)
+    }];
+  }, []);
+}
 
 function getNormalNumber(number) {
   return (number < 10 ? '0' + number : number);
-}
-
-export function getCurrentDay() {
-  return +currentDate[2];
-}
-
-export function getWeek() {
-  const week = [{ Mon: 0 }, { Tue: 0 }, { Wed: 0 }, { Thu: 0 }, { Fri: 0 }, { Sat: 0 }, { Sun: 0 }];
-  for (let i = 0; i < 7; i++) {
-    week[i][weekDays[i]] = currentDate[2] - weekDays.indexOf(currentDate[0]) + i;
-  }
-  return week;
-}
-
-export function getMonth() {
-  return currentDate[1];
-}
-
-export function getYear() {
-  return currentDate[3];
 }
 
 export function getHours() {
@@ -34,19 +34,21 @@ export function getHours() {
   return hours;
 }
 
-export function getGrid(week = getWeek(), month = getMonth(), year = getYear()) {
+export function getGrid(week, month, year) {
   const grid = [];
   for (let i = 0; i < 24; i++) {
-    const weekHours = [];
+    const cells = [];
     for (let j = 0; j < 7; j++) {
-      weekHours.push(Date.parse(
-        `${year}` + '-' +
-        `${months[month][0]}` + '-' +
-        `${getNormalNumber(week[j][weekDays[j]])}` + 'T' +
-        `${getNormalNumber(i)}:00:00`)
-      );
+      if (week[j][weekDays[j]]) {
+        cells.push(Date.parse(
+          `${year}` + '-' +
+          `${getNormalNumber(months.indexOf(month) + 1)}` + '-' +
+          `${getNormalNumber(week[j][weekDays[j]])}` + 'T' +
+          `${getNormalNumber(i)}:00:00`)
+        );
+      }
     }
-    grid.push(weekHours);
+    grid.push(cells);
   }
   return grid;
 }

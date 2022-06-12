@@ -27,6 +27,10 @@ const StyledFooter = styled.div`
 const Footer = observer(() => {
   const { store } = useContext(StoreContext);
 
+  const setTodayHeader = () => {
+    store.setToday();
+  };
+
   const removeEventsHandler = () => {
     const amount = store.selectedEvents.length;
     setTimeout(() => alert(`The ${amount} events have been removed`), 500);
@@ -35,7 +39,7 @@ const Footer = observer(() => {
 
   return (
     <StyledFooter>
-      <p>Today</p>
+      <p onClick={setTodayHeader}>Today</p>
       <p onClick={removeEventsHandler}>
         {store.selectedEvents.length ? 'Delete' : ''}
       </p>

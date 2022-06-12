@@ -43,11 +43,13 @@ const Header = () => {
   const { store } = useContext(StoreContext);
 
   const addEventHandler = () => {
-    const event = prompt('Enter event time: YYYY-MM-DD hh:mm:ss')?.split(' ');
-    if (event.length === 2) {
-      store.setEvent(Date.parse(`${event[0]}T${event[1]}`));
+    const reg = /\d{4}-\d{1,2}-\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}/;
+    const event = prompt('Enter event time: YYYY-MM-DD hh:mm:ss');
+    if (reg.test(event)) {
+      const arr = event.split(' ');
+      store.setEvent(Date.parse(`${arr[0]}T${arr[1]}`));
     } else {
-      alert('Wrong user input');
+      (event || event === '') && alert('Wrong user input');
     }
   };
 

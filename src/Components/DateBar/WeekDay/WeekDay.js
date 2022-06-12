@@ -35,7 +35,7 @@ const WeekDay = ({ day, date, isCurrent }) => {
   return (
     <StyledWeekDay isCurrent={isCurrent}>
       <p>{day[0]}</p>
-      <p>{date}</p>
+      <p>{date ? date : ''}</p>
     </StyledWeekDay>
   );
 };

@@ -27,11 +27,11 @@ const Grid = observer(() => {
 
   return (
     <StyledGrid>
-      {getGrid().map((week, index) =>
+      {getGrid(store.week, store.month, store.year).map((week, index) =>
         <li key={index}>
           <ul>
             {week.map((cellTimestamp, index) =>
-              <Cell key={index} cellTimestamp={cellTimestamp} events={store.events} />
+              <Cell key={index} cellTimestamp={cellTimestamp} />
             )}
           </ul>
         </li>
