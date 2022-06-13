@@ -19,7 +19,7 @@ const StyledHours = styled.ul`
   }
 
   @media (min-width: 576px) {
-    padding-top: 33px;
+    padding-top: 31px;
 
     li {
       width: 96px;
