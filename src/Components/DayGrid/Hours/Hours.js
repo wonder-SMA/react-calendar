@@ -4,26 +4,25 @@ import styled from 'styled-components';
 import { getHours } from '../../utils/functions';
 
 const StyledHours = styled.ul`
-  padding-top: 22px;
+  padding-top: 24px;
 
   li {
     width: 65px;
-    height: 48px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2px;
     font-size: 24px;
     font-weight: 500;
     color: #cfcfcf;
   }
 
   @media (min-width: 576px) {
-    padding-top: 31px;
+    padding-top: 33px;
 
     li {
       width: 96px;
-      height: 66px;
+      height: 68px;
       font-size: 26px;
     }
   }

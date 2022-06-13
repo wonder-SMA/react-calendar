@@ -7,8 +7,8 @@ import Hours from './Hours';
 import { StoreContext } from '../../index';
 
 const StyledDayGrid = styled.div`
-  max-height: 1536px;
-  height: calc(98vh - 327px);
+  max-height: 1200px;
+  height: calc(100vh - 327px);
   display: flex;
   overflow-y: auto;
 
@@ -18,7 +18,12 @@ const StyledDayGrid = styled.div`
 
   ${props => props?.isEndWeek && css`
     justify-content: space-between;
-  `}
+  `};
+  
+  @media (min-width: 576px) {
+    max-height: 1632px;
+    height: calc(100vh - 354px);
+  }
 `;
 
 const DayGrid = observer(() => {

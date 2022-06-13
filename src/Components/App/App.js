@@ -9,9 +9,13 @@ import Header from '../Header';
 const AppWrapper = styled.div`
   position: relative;
   width: 100%;
-  max-height: 1890px;
-  height: 98vh;
-  
+  max-height: 1527px;
+  height: 100vh;
+
+  @media (min-width: 576px) {
+    max-height: 1986px;
+  }
+
   @media (min-width: 740px) {
     width: 740px;
     margin: 0 auto;

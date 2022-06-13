@@ -15,7 +15,6 @@ const Global = createGlobalStyle`
     font-weight: 400;
     font-size: 16px;
     margin: 0;
-    padding: 1vh 15px;
     overflow-x: hidden;
   }
 
