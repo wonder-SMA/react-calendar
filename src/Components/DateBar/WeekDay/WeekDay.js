@@ -14,13 +14,13 @@ const StyledWeekDay = styled.li`
   }
 
   p:last-child {
-    font-size: 26px;
+    font-size: 24px;
 
     ${props => props?.isCurrent && css`
       position: relative;
-      top: 8px;
-      width: 50px;
-      height: 50px;
+      top: 5px;
+      width: 42px;
+      height: 42px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -28,6 +28,18 @@ const StyledWeekDay = styled.li`
       color: white;
       background-color: #ff2d2d;
     `}
+  }
+
+  @media (min-width: 576px) {
+    p:last-child {
+      font-size: 26px;
+
+      ${props => props?.isCurrent && css`
+        top: 8px;
+        width: 50px;
+        height: 50px;
+      `}
+    }
   }
 `;
 

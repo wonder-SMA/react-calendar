@@ -5,14 +5,14 @@ import { StoreContext } from '../../index';
 
 const StyledHeader = styled.div`
   width: 100%;
-  height: 128px;
-  padding: 0 50px;
+  height: 118px;
+  padding: 0 7vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   p {
-    font-size: 40px
+    font-size: 28px
   }
 
   div:last-child {
@@ -28,7 +28,7 @@ const StyledHeader = styled.div`
     position: absolute;
     top: 23px;
     right: 10px;
-    width: 30px;
+    width: 25px;
     height: 4px;
     background-color: #ff2d2d;
     content: '';
@@ -36,6 +36,20 @@ const StyledHeader = styled.div`
 
   span:after {
     transform: rotate(90deg);
+  }
+
+  @media (min-width: 576px) {
+    height: 128px;
+    padding: 0 50px;
+
+    p {
+      font-size: 40px
+    }
+
+    span:before,
+    span:after {
+      width: 30px;
+    }
   }
 `;
 

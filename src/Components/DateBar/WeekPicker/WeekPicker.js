@@ -20,7 +20,13 @@ const StyledWeekPicker = styled.div`
 
   p {
     text-align: center;
-    font-size: 24px;
+    font-size: 22px;
+  }
+
+  @media (min-width: 576px) {
+    p {
+      font-size: 24px;
+    }
   }
 `;
 

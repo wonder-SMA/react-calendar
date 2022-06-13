@@ -8,7 +8,7 @@ import { StoreContext } from '../../index';
 
 const StyledDayGrid = styled.div`
   max-height: 1536px;
-  height: calc(98vh - 354px);
+  height: calc(98vh - 327px);
   display: flex;
   overflow-y: auto;
 

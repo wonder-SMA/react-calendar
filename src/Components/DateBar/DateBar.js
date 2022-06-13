@@ -9,16 +9,12 @@ import { StoreContext } from '../../index';
 
 const StyledDateBar = styled.div`
   width: 100%;
-  height: 146px;
+  height: 135px;
   display: flex;
   padding-left: 65px;
   border-top: 2px solid #ececec;
   border-bottom: 2px solid #ececec;
   background-color: #f6f6f6;
-
-  @media (min-width: 644px) {
-    padding-left: 96px;
-  }
 
   & > div {
     width: 644px;
@@ -35,6 +31,11 @@ const StyledDateBar = styled.div`
     p {
       font-weight: 600;
     }
+  }
+
+  @media (min-width: 576px) {
+    height: 146px;
+    padding-left: 96px;
   }
 `;
 

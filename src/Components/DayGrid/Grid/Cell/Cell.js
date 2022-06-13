@@ -7,11 +7,15 @@ import { StoreContext } from '../../../../index';
 
 const StyledCell = styled.li`
   width: 100%;
-  height: 66px;
+  height: 48px;
   padding: 2px;
 
   &:not(&:first-child) {
     border-left: 2px solid #e7e7e7;
+  }
+
+  @media (min-width: 576px) {
+    height: 66px;
   }
 `;
 

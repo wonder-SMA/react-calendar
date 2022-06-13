@@ -4,21 +4,32 @@ import styled from 'styled-components';
 import { getHours } from '../../utils/functions';
 
 const StyledHours = styled.ul`
-  width: 96px;
-  padding-top: 33px;
+  padding-top: 22px;
 
   li {
     width: 65px;
-    height: 66px;
+    height: 48px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 2px;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 500;
     color: #cfcfcf;
+  }
 
-    @media (min-width: 644px) {
+  @media (min-width: 576px) {
+    padding-top: 33px;
+
+    li {
+      width: 96px;
+      height: 66px;
+      font-size: 26px;
+    }
+  }
+
+  @media (min-width: 644px) {
+    li {
       width: 96px;
     }
   }
